@@ -23,6 +23,8 @@ total = int(size/44356)
 n = 1
 op = total/100
 last = total - int(op*11)
+first = int(op*3)
+t = first + 2501
 line = 88712
 backline = 0
 syncword = "00000000000000"
@@ -40,10 +42,10 @@ if __name__ == "__main__":
         backline = line
         line += 88712
         syncwordfile = x[:14]
-        if (n < 101):
+        if (n < first):
             vcducounter = "0000"
             syncword = "00000000000000"
-        if (n >= 101 <= 2601):
+        if (n >= first <= t):
             count1 = counter2()
             hexdata = hex(count1).split('x')[-1]
             if len(hexdata) == 1:
@@ -55,7 +57,7 @@ if __name__ == "__main__":
             else:
                 vcducounter = hexdata.upper()
             syncword = "00000033FFFF00"  
-        if (n > 2601):
+        if (n > t):
             vcducounter = "0000"
             syncword = "000000CC000000"
         if (n >= last):
